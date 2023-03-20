@@ -96,6 +96,7 @@
 
 .movie-title {
   color: black;
+  font-size: 18px;
 }
 
 .more-btn {
@@ -109,4 +110,17 @@
 
   transform: scale(1.04);
   transition: 0.5s ease-in-out;
+}
+.loader{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loader .load{
+  width: 50px;
+  height: 50px;
+  margin: 10px 0;
+}
+.pagination{
+  margin: 0;
 }

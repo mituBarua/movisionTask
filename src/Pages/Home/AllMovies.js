@@ -70,7 +70,7 @@ const AllMovies = () => {
           </Row>
 
           <Pagination
-            className="justify-content-center"
+            className="justify-content-center pagination"
             size="lg"
             onClick={(e) => e.preventDefault()}
           >

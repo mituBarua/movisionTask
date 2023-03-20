@@ -9,7 +9,7 @@ export default function Movie({movie}) {
         <Card className='movie-card' >
                 <Card.Img variant="top" className="campaign-img" src={`https://image.tmdb.org/t/p/w1280/${poster_path}`} />
                 <Card.Body>
-                    <Card.Title className='movie-title'>{title.slice(0,30)}</Card.Title>
+                    <Card.Title className='movie-title'>{title.slice(0,25)}</Card.Title>
                     <Card.Text>
                       {year}
                     </Card.Text>

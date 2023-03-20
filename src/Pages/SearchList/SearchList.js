@@ -3,13 +3,14 @@ import { Row, Col, Pagination } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Movie from "../../Component/Movie";
+import Loading from "../../Component/Loading";
 
 const itemsPerPage = 10;
 export default function SearchList() {
   const { searchItem } = useParams();
   const [searchResult, setSearchResult] = useState([]);
   const [activePage, setActivePage] = useState(1);
-
+  const [loading, setLoading] = useState(true);
   const getMoviesByTitle = async () => {
     const { data } = await axios.get(`${process.env.REACT_APP_SEARCH_API}`, {
       params: {
@@ -18,6 +19,7 @@ export default function SearchList() {
       },
     });
     setSearchResult(data.results);
+    setLoading(false);
   };
   useEffect(() => {
     getMoviesByTitle();
@@ -30,6 +32,11 @@ export default function SearchList() {
   const handlePageChange = (pageNumber) => {
     setActivePage(pageNumber);
   };
+  if (loading) {
+    return (
+     <Loading/>
+    );
+  }
   return (
     <div className="bg">
       <div className="container">
@@ -41,7 +48,7 @@ export default function SearchList() {
           ))}
         </Row>
         <Pagination
-          className="justify-content-center"
+          className="justify-content-center pagination"
           size="lg"
           onClick={(e) => e.preventDefault()}
         >
