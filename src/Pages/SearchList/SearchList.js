@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from "react";
 import { Row, Col, Pagination } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Movie from "../../Component/Movie";
 
-
 const itemsPerPage = 10;
 export default function SearchList() {
-
   const { searchItem } = useParams();
   const [searchResult, setSearchResult] = useState([]);
   const [activePage, setActivePage] = useState(1);
@@ -23,7 +21,7 @@ export default function SearchList() {
   };
   useEffect(() => {
     getMoviesByTitle();
-  })
+  });
   const totalPages = Math.ceil(searchResult.length / itemsPerPage);
   const startIndex = (activePage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -33,30 +31,31 @@ export default function SearchList() {
     setActivePage(pageNumber);
   };
   return (
-    <div className='bg'>
-      <Row className="py-3">
-        {displayedItems?.map((movie) => (
-          <Col md="3" sm="6" className="my-2">
-            <Movie key={movie.id} movie={movie}></Movie>
-          </Col>
-        ))}
-      </Row>
-      <Pagination
-        className="justify-content-center"
-        size="lg"
-        onClick={(e) => e.preventDefault()}
-      >
-        {Array.from({ length: totalPages }).map((_, index) => (
-          <Pagination.Item
-            key={index}
-            active={index + 1 === activePage}
-            onClick={() => handlePageChange(index + 1)}
-          >
-            {index + 1}
-          </Pagination.Item>
-        ))}
-      </Pagination>
-
+    <div className="bg">
+      <div className="container">
+        <Row className="py-3">
+          {displayedItems?.map((movie) => (
+            <Col md="3" sm="6" className="my-2">
+              <Movie key={movie.id} movie={movie}></Movie>
+            </Col>
+          ))}
+        </Row>
+        <Pagination
+          className="justify-content-center"
+          size="lg"
+          onClick={(e) => e.preventDefault()}
+        >
+          {Array.from({ length: totalPages }).map((_, index) => (
+            <Pagination.Item
+              key={index}
+              active={index + 1 === activePage}
+              onClick={() => handlePageChange(index + 1)}
+            >
+              {index + 1}
+            </Pagination.Item>
+          ))}
+        </Pagination>
+      </div>
     </div>
-  )
+  );
 }
